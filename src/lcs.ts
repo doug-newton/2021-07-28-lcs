@@ -11,6 +11,7 @@ export class LongestCommonSubsequenceSolver {
         this.sideSet = set2
         this.matrixWidth = set1.length + 1;
         this.matrixHeight = set2.length + 1;
+        this.initMatrix()
     }
 
     printMatrix(): void {
@@ -34,10 +35,9 @@ export class LongestCommonSubsequenceSolver {
         }
     }
 
-    result: string[] = []
+    result: string[] = ['']
 
-    computeMatrix(): void {
-        this.initMatrix()
+    longestCommonSubsequence(): string[] {
         for (let c = 1; c < this.matrixWidth; c++) {
             for (let r = 1; r < this.matrixHeight; r++) {
                 if (this.topSet[c - 1] == this.sideSet[r - 1]) {
@@ -52,10 +52,6 @@ export class LongestCommonSubsequenceSolver {
                 }
             }
         }
-    }
-
-    longestCommonSubsequence(): string[] {
-        this.computeMatrix()
         return this.result;
     }
 }
