@@ -11,7 +11,6 @@ export class LongestCommonSubsequenceSolver {
         this.sideSet = set2
         this.matrixWidth = set1.length + 1;
         this.matrixHeight = set2.length + 1;
-
     }
 
     printMatrix(): void {
@@ -24,7 +23,7 @@ export class LongestCommonSubsequenceSolver {
     }
 
     initMatrix() {
-        this.matrix = Array(this.matrixWidth).fill(null).map(() => Array(this.matrixHeight).fill(null));
+        this.matrix = Array(this.matrixHeight).fill(null).map(() => Array(this.matrixWidth).fill(null));
 
         for (let r = 0; r < this.matrixHeight; r++) {
             this.matrix[r][0] = 0
