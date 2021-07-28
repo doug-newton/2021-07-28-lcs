@@ -1,66 +1,83 @@
-export function printMatrix(matrix: number[][]): void {
-    let h: number = matrix.length
-    for (let i = 0; i < h; i++) {
-        let row: number[] = matrix[i]
-        console.log(row)
-    }
-    console.log()
-}
+export class LongestCommonSubsequenceSolver {
+    matrix: number[][] = []
 
-export function longestCommonSubsequence(set1: string[], set2: string[]): string[] {
+    topSet: string[]
+    sideSet: string[]
+    matrixWidth: number = -1
+    matrixHeight: number = -1
 
-    let w = set1.length + 1;
-    let h = set2.length + 1;
+    constructor(set1: string[], set2: string[]){
+        this.topSet = set1
+        this.sideSet = set2
+        this.matrixWidth = set1.length + 1;
+        this.matrixHeight = set2.length + 1;
 
-    let matrix: number[][] = Array(set2.length + 1).fill(null).map(() => Array(set1.length + 1).fill(null));
-
-    for (let r = 0; r < h; r++) {
-        matrix[r][0] = 0
     }
 
-    for (let c = 0; c < w; c++) {
-        matrix[0][c] = 0
+    printMatrix(): void {
+        let h: number = this.matrix.length
+        for (let i = 0; i < h; i++) {
+            let row: number[] = this.matrix[i]
+            console.log(row)
+        }
+        console.log()
     }
 
-    for (let c = 1; c < w; c++) {
-        for (let r = 1; r < h; r++) {
-            if (set1[c - 1] == set2[r - 1]) {
-                //    top-left diagonal plus 1
-                matrix[r][c] = matrix[r - 1][c - 1] + 1
-            }
-            else {
-                //    max of cell to the left and cell above
-                matrix[r][c] = matrix[r][c - 1]
+    initMatrix() {
+        this.matrix = Array(this.matrixWidth).fill(null).map(() => Array(this.matrixHeight).fill(null));
 
-                if (matrix[r - 1][c] > matrix[r][c]) {
-                    matrix[r][c] = matrix[r - 1][c]
+        for (let r = 0; r < this.matrixHeight; r++) {
+            this.matrix[r][0] = 0
+        }
+
+        for (let c = 0; c < this.matrixWidth; c++) {
+            this.matrix[0][c] = 0
+        }
+    }
+
+    computeMatrix(): void {
+        this.initMatrix()
+        for (let c = 1; c < this.matrixWidth; c++) {
+            for (let r = 1; r < this.matrixHeight; r++) {
+                if (this.topSet[c - 1] == this.sideSet[r - 1]) {
+                    this.matrix[r][c] = this.matrix[r - 1][c - 1] + 1
+                }
+                else {
+                    this.matrix[r][c] = this.matrix[r][c - 1]
+                    if (this.matrix[r - 1][c] > this.matrix[r][c]) {
+                        this.matrix[r][c] = this.matrix[r - 1][c]
+                    }
                 }
             }
         }
     }
 
-    let len = matrix[h - 1][w - 1];
-    let result: string[] = []
+    longestCommonSubsequence(): string[] {
+        this.computeMatrix()
 
-    let r = h - 1;
-    let c = w - 1;
+        let len = this.matrix[this.matrixHeight - 1][this.matrixWidth - 1];
+        let result: string[] = []
 
-    while (r >= 1 || c >= 1) {
-        let above: number = matrix[r - 1][c]
-        let left: number = matrix[r][c - 1]
+        let r = this.matrixHeight - 1;
+        let c = this.matrixWidth - 1;
 
-        if (above == left) {
-            result.push(set1[c])
-            c--;
-            r--;
+        while (r >= 1 || c >= 1) {
+            let above: number = this.matrix[r - 1][c]
+            let left: number = this.matrix[r][c - 1]
+
+            if (above == left) {
+                result.push(this.topSet[c])
+                c--;
+                r--;
+            }
+            else if (above > left) {
+                r--;
+            }
+            else {
+                c--;
+            }
         }
-        else if (above > left) {
-            r--;
-        }
-        else {
-            c--;
-        }
+
+        return ['']
     }
-
-    return ['']
 }

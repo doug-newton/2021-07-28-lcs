@@ -1,32 +1,32 @@
 import { expect } from 'chai';
-import { longestCommonSubsequence } from '../src/lcs';
+import { LongestCommonSubsequenceSolver } from '../src/lcs';
 
 describe('longestCommonSubsequence', () => {
   it('should find longest common subsequence for two strings', () => {
-    expect(longestCommonSubsequence([''], [''])).to.deep.equal(['']);
+    expect((new LongestCommonSubsequenceSolver([''], [''])).longestCommonSubsequence()).to.deep.equal(['']);
 
-    expect(longestCommonSubsequence([''], ['A', 'B', 'C'])).to.deep.equal(['']);
+    expect((new LongestCommonSubsequenceSolver([''], ['A', 'B', 'C'])).longestCommonSubsequence()).to.deep.equal(['']);
 
-    expect(longestCommonSubsequence(['A', 'B', 'C'], [''])).to.deep.equal(['']);
+    expect((new LongestCommonSubsequenceSolver(['A', 'B', 'C'], [''])).longestCommonSubsequence()).to.deep.equal(['']);
 
-    expect(longestCommonSubsequence(
+    expect((new LongestCommonSubsequenceSolver(
       ['A', 'B', 'C'],
       ['D', 'E', 'F', 'G'],
-    )).to.deep.equal(['']);
+    )).longestCommonSubsequence()).to.deep.equal(['']);
 
-    expect(longestCommonSubsequence(
+    expect((new LongestCommonSubsequenceSolver(
       ['A', 'B', 'C', 'D', 'G', 'H'],
       ['A', 'E', 'D', 'F', 'H', 'R'],
-    )).to.deep.equal(['A', 'D', 'H']);
+    )).longestCommonSubsequence()).to.deep.equal(['A', 'D', 'H']);
 
-    expect(longestCommonSubsequence(
+    expect((new LongestCommonSubsequenceSolver(
       ['A', 'G', 'G', 'T', 'A', 'B'],
       ['G', 'X', 'T', 'X', 'A', 'Y', 'B'],
-    )).to.deep.equal(['G', 'T', 'A', 'B']);
+    )).longestCommonSubsequence()).to.deep.equal(['G', 'T', 'A', 'B']);
 
-    expect(longestCommonSubsequence(
+    expect((new LongestCommonSubsequenceSolver(
       ['A', 'B', 'C', 'D', 'A', 'F'],
       ['A', 'C', 'B', 'C', 'F'],
-    )).to.deep.equal(['A', 'B', 'C', 'F']);
+    )).longestCommonSubsequence()).to.deep.equal(['A', 'B', 'C', 'F']);
   });
 });
