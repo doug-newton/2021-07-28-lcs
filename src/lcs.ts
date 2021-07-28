@@ -1,7 +1,5 @@
 export function printMatrix(matrix: number[][]): void {
-    let w: number = matrix[0].length
     let h: number = matrix.length
-
     for (let i = 0; i < h; i++) {
         let row: number[] = matrix[i]
         console.log(row)
