@@ -38,8 +38,8 @@ export class LongestCommonSubsequenceSolver {
     result: string[] = ['']
 
     longestCommonSubsequence(): string[] {
-        for (let c = 1; c < this.matrixWidth; c++) {
-            for (let r = 1; r < this.matrixHeight; r++) {
+        for (let c = 1; c < this.matrixWidth - 1; c++) {
+            for (let r = 1; r < this.matrixHeight - 1; r++) {
                 if (this.topSet[c - 1] == this.sideSet[r - 1]) {
                     this.matrix[r][c] = this.matrix[r - 1][c - 1] + 1
                     this.result.push(this.topSet[c-1])
