@@ -17,8 +17,12 @@ export class LongestCommonSubsequenceSolver {
     printMatrix(): void {
         let h: number = this.matrix.length
         for (let i = 0; i < h; i++) {
+            let line: string = ''
             let row: number[] = this.matrix[i]
-            console.log(row)
+            for (let j = 0; j < row.length; j++) {
+                line += row[j] + " |"
+            }
+            console.log(line)
         }
         console.log()
     }
@@ -35,14 +39,14 @@ export class LongestCommonSubsequenceSolver {
         }
     }
 
-    result: string[] = ['']
+    result: string[] = []
 
     longestCommonSubsequence(): string[] {
-        for (let c = 1; c < this.matrixWidth - 1; c++) {
-            for (let r = 1; r < this.matrixHeight - 1; r++) {
+        for (let c = 1; c < this.matrixWidth; c++) {
+            for (let r = 1; r < this.matrixHeight; r++) {
                 if (this.topSet[c - 1] == this.sideSet[r - 1]) {
                     this.matrix[r][c] = this.matrix[r - 1][c - 1] + 1
-                    this.result.push(this.topSet[c-1])
+                    this.result.push(this.topSet[c - 1])
                 }
                 else {
                     this.matrix[r][c] = this.matrix[r][c - 1]
@@ -51,6 +55,9 @@ export class LongestCommonSubsequenceSolver {
                     }
                 }
             }
+        }
+        if (this.result.length < 1) {
+            this.result = ['']
         }
         return this.result;
     }
