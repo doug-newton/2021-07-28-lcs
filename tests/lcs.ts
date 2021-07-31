@@ -42,7 +42,7 @@ describe('longestCommonSubsequence', () => {
     let lcs: LongestCommonSubsequenceSolver = new LongestCommonSubsequenceSolver( ['A', 'G', 'G', 'T', 'A', 'B'], ['G', 'X', 'T', 'X', 'A', 'Y', 'B'])
     let res: string[] = (lcs).longestCommonSubsequence()
     let msg: string = lcs.debugBuffer.join('\n')
-    expect(res).to.deep.equal(['G', 'T', 'A', 'B'])
+    expect(res).to.deep.equal(['G', 'T', 'A', 'B'], msg)
   })
   
   it('should find longest common subsequence for two strings #7', () => {
