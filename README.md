@@ -10,4 +10,4 @@ I kept his 7 test cases, and then stripped down the algorithm to use this as a l
 
 Using the matrix and backtracking steps as an assertion failure message helped a lot to find the flaws in my logic.
 
-`master` branch only has the final solution, while `2021-07-28-lcs` is where I struggled to get it to work.
+`master` branch only has the 'final' solution, while `2021-07-28-lcs` is where I struggled to get it to work.
