@@ -113,14 +113,36 @@ export class LongestCommonSubsequenceSolver {
 
         this.printMatrix();
 
+        this.debugLog(`highest: ${highest}`)
         this.debugLog(`hr: ${hr}, hc: ${hc}`)
 
         if (highest > 0) {
-            this.result.push(this.topSet[hc - 1])
 
-            while (hc > 1 || hr > 1) {
-                let val: number = this.matrix[hr][hc]
+            while (hr >= 1 || hc >= 1) {
+                let current: number = this.matrix[hr][hc]
+                let above: number = this.matrix[hr - 1][hc]
+                let left: number = this.matrix[hr][hc - 1]
+                let aboveLeft: number = this.matrix[hr - 1][hc - 1]
+
+                if (above == left) {
+                    if (aboveLeft < current) {
+                        let c: string = this.topSet[hc - 1]
+                        this.debugLog(`pushing (${c}) from hr: ${hr}, hc: ${hc}`)
+                        this.debugLog('')
+                        this.result.unshift(c)
+                    }
+                    hc--;
+                    hr--;
+                }
+                else if (above > left) {
+                    hr--;
+                }
+                else {
+                    hc--;
+                }
+
             }
+
         }
         else {
             this.result.push('')
