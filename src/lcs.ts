@@ -15,16 +15,33 @@ export class LongestCommonSubsequenceSolver {
     }
 
     printMatrix(): void {
-        let h: number = this.matrix.length
-        for (let i = 0; i < h; i++) {
-            let line: string = ''
-            let row: number[] = this.matrix[i]
-            for (let j = 0; j < row.length; j++) {
-                line += row[j] + " |"
-            }
-            console.log(line)
+        let topRow: string = ''
+
+        topRow =  '     |'
+
+        for (let c: number = 0; c < this.topSet.length; c++) {
+            topRow += this.topSet[c] + ' |'
         }
-        console.log()
+
+        console.log(topRow)
+
+        for (let r: number = 0; r < this.matrix.length; r++) {
+
+            let line: string = ''
+
+            if (r > 0) 
+                line += this.sideSet[r - 1] + ' |'
+            else
+                line += '  |'
+
+
+            for (let c: number = 0; c < this.matrix[0].length; c++) {
+                line += this.matrix[r][c] + ' |'
+            }
+
+            console.log(line)
+
+        }
     }
 
     initMatrix() {
@@ -42,23 +59,43 @@ export class LongestCommonSubsequenceSolver {
     result: string[] = []
 
     longestCommonSubsequence(): string[] {
+        let highest: number = 0
+        let hr: number = 0
+        let hc: number = 0
+
         for (let c = 1; c < this.matrixWidth; c++) {
+
             for (let r = 1; r < this.matrixHeight; r++) {
-                if (this.topSet[c - 1] == this.sideSet[r - 1]) {
+
+                if (this.topSet[c - 1] === this.sideSet[r - 1]) {
+
                     this.matrix[r][c] = this.matrix[r - 1][c - 1] + 1
-                    this.result.push(this.topSet[c - 1])
+
+                    if (this.matrix[r][c] > highest)
+                    {
+                        highest = this.matrix[r][c]
+                        hr = r
+                        hc = c
+                    }
+
                 }
                 else {
+
                     this.matrix[r][c] = this.matrix[r][c - 1]
+
                     if (this.matrix[r - 1][c] > this.matrix[r][c]) {
                         this.matrix[r][c] = this.matrix[r - 1][c]
                     }
+
                 }
             }
         }
-        if (this.result.length < 1) {
-            this.result = ['']
-        }
+
+        let c = this.matrixWidth - 1
+        let r = this.matrixHeight - 1
+
+        this.result.push(this.topSet[c-1])
+
         return this.result;
     }
 }

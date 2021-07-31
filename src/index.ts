@@ -1,10 +1,13 @@
 import { LongestCommonSubsequenceSolver } from "./lcs"
 
-let lcs: LongestCommonSubsequenceSolver = new LongestCommonSubsequenceSolver(
-    ['A', 'B', 'C'],
-    ['D', 'E', 'F', 'G'],
+let t: LongestCommonSubsequenceSolver = new LongestCommonSubsequenceSolver(
+    ['A', 'G', 'G', 'T', 'A', 'B'],
+    ['G', 'X', 'T', 'X', 'A', 'Y', 'B'],
 )
 
-let result: string[] = lcs.longestCommonSubsequence()
+t.longestCommonSubsequence()
 
-console.log('see');
+t.printMatrix()
+console.log(t.result)
+
+//    ['G', 'T', 'A', 'B']
