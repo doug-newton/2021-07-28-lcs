@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --config nodemon-run.json --exec \"npx ts-node src/index.ts\" --inspect",
-    "test": "nodemon --config nodemon-test.json --exec \"npx mocha -r ts-node/register 'tests/**/*.ts'\""
+    "test": "nodemon --config nodemon-test.json --exec \"npx mocha -r ts-node/register 'tests/**/*.ts'\" --inspect"
   },
   "keywords": [],
   "author": "",
