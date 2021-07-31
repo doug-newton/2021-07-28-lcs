@@ -118,7 +118,7 @@ export class LongestCommonSubsequenceSolver {
 
         if (highest > 0) {
 
-            while (hr >= 1 || hc >= 1) {
+            while (hr >= 1 && hc >= 1) {
                 let current: number = this.matrix[hr][hc]
                 let above: number = this.matrix[hr - 1][hc]
                 let left: number = this.matrix[hr][hc - 1]
