@@ -74,7 +74,6 @@ export class LongestCommonSubsequenceSolver {
         for (let c = 0; c < this.matrixWidth; c++) {
             this.matrix[0][c] = 0
         }
-
     }
 
     result: string[] = []
@@ -85,11 +84,9 @@ export class LongestCommonSubsequenceSolver {
         let hc: number = 0
 
         for (let c = 1; c < this.matrixWidth; c++) {
-
             for (let r = 1; r < this.matrixHeight; r++) {
 
                 if (this.topSet[c - 1] === this.sideSet[r - 1]) {
-
                     this.matrix[r][c] = this.matrix[r - 1][c - 1] + 1
 
                     if (this.matrix[r][c] > highest) {
@@ -97,16 +94,13 @@ export class LongestCommonSubsequenceSolver {
                         hr = r
                         hc = c
                     }
-
                 }
                 else {
-
                     this.matrix[r][c] = this.matrix[r][c - 1]
 
                     if (this.matrix[r - 1][c] > this.matrix[r][c]) {
                         this.matrix[r][c] = this.matrix[r - 1][c]
                     }
-
                 }
             }
         }
@@ -140,9 +134,7 @@ export class LongestCommonSubsequenceSolver {
                 else {
                     hc--;
                 }
-
             }
-
         }
         else {
             this.result.push('')
